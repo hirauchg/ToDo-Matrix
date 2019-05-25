@@ -5,12 +5,12 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hirauchi.todo_matrix.ui.MainFragmentUI
+import com.hirauchi.todo_matrix.ui.ToDoMatrixFragmentUI
 import org.jetbrains.anko.AnkoContext
 
-class MainFragment : Fragment() {
+class ToDoMatrixFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return MainFragmentUI().createView(AnkoContext.create(inflater.context, this, false))
+        return ToDoMatrixFragmentUI().createView(AnkoContext.create(inflater.context, this, false))
     }
 }
