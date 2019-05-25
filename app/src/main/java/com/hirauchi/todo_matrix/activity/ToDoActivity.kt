@@ -1,13 +1,13 @@
 package com.hirauchi.todo_matrix.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.hirauchi.todo_matrix.R
 import com.hirauchi.todo_matrix.fragment.ToDoListFragment
 import org.jetbrains.anko.startActivity
 import android.content.res.Configuration
+import android.view.*
 import com.hirauchi.todo_matrix.fragment.ToDoMatrixFragment
+
 
 class ToDoActivity : BaseActivity() {
 
@@ -35,9 +35,11 @@ class ToDoActivity : BaseActivity() {
             if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 show(mToDoListFragment)
                 hide(mToDoMatrixFragment)
+                supportActionBar?.show()
             } else {
                 show(mToDoMatrixFragment)
                 hide(mToDoListFragment)
+                supportActionBar?.hide()
             }
             commit()
         }
