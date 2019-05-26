@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hirauchi.todo_matrix.Constants
 import com.hirauchi.todo_matrix.R
+import com.hirauchi.todo_matrix.activity.AddToDoActivity
 import com.hirauchi.todo_matrix.adapter.ToDoListAdapter
 import com.hirauchi.todo_matrix.manager.ToDoManager
 import com.hirauchi.todo_matrix.model.ToDo
 import com.hirauchi.todo_matrix.ui.ToDoListFragmentUI
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.yesButton
 
@@ -64,6 +67,6 @@ class ToDoListFragment : Fragment(), ToDoListAdapter.ToDoListener {
     }
 
     override fun onEditToDo(position: Int) {
-//        (activity as ToDoActivity).editTask(id)
+        activity?.startActivityForResult<AddToDoActivity>(Constants.REQUEST_CODE_EDIT_TODO, Constants.KEY_TODO to mToDoList.get(position))
     }
 }

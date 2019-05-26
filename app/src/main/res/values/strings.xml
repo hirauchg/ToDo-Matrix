@@ -17,6 +17,11 @@
 
     <!-- AddToDo -->
     <string name="add_todo_title">ToDoの追加</string>
+    <string name="add_todo_importance">重要度</string>
+    <string name="add_todo_urgency">緊急度</string>
+    <string name="add_todo_content">内容</string>
+    <string name="add_todo_button">追加</string>
 
     <string name="edit_todo_title">ToDoの編集</string>
+    <string name="edit_todo_button">編集</string>
 </resources>

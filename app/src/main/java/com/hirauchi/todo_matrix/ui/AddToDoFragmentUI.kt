@@ -2,6 +2,7 @@ package com.hirauchi.todo_matrix.ui
 
 import android.view.Gravity
 import android.widget.*
+import com.hirauchi.todo_matrix.R
 import com.hirauchi.todo_matrix.fragment.AddToDoFragment
 import org.jetbrains.anko.*
 
@@ -17,7 +18,7 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
             setPadding(44, 44, 44, 44)
 
             verticalLayout {
-                textView("重要度") {
+                textView(R.string.add_todo_importance) {
                     textSize = 18F
                 }.lparams(width = matchParent) {
                     bottomMargin = dip(15)
@@ -37,7 +38,7 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                     bottomMargin = dip(30)
                 }
 
-                textView("緊急度") {
+                textView(R.string.add_todo_urgency) {
                     textSize = 18F
                 }.lparams(width = matchParent) {
                     bottomMargin = dip(15)
@@ -57,7 +58,7 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                     bottomMargin = dip(30)
                 }
 
-                textView("内容") {
+                textView(R.string.add_todo_content) {
                     textSize = 18F
                 }.lparams(width = matchParent) {
                     bottomMargin = dip(10)
@@ -67,7 +68,7 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                     bottomMargin = dip(30)
                 }
 
-                mButton = button("追加").lparams(width = wrapContent) {
+                mButton = button(R.string.add_todo_button).lparams(width = wrapContent) {
                     gravity = Gravity.CENTER_HORIZONTAL
                     bottomMargin = dip(30)
                 }

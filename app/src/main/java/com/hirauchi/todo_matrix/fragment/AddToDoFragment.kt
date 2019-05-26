@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.SeekBar
+import com.hirauchi.todo_matrix.Constants
+import com.hirauchi.todo_matrix.R
 import com.hirauchi.todo_matrix.manager.ToDoManager
+import com.hirauchi.todo_matrix.model.ToDo
 import com.hirauchi.todo_matrix.ui.AddToDoFragmentUI
 import org.jetbrains.anko.AnkoContext
 
@@ -21,6 +24,15 @@ class AddToDoFragment : Fragment() {
     private val mUI = AddToDoFragmentUI()
     private var mImportanceValue = 1
     private var mUrgencyValue = 1
+    private var mToDo: ToDo? = null
+
+    companion object {
+        fun newInstance(todo: ToDo?): AddToDoFragment = AddToDoFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(Constants.KEY_TODO, todo)
+            }
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return mUI.createView(AnkoContext.create(inflater.context, this, false))
@@ -35,6 +47,8 @@ class AddToDoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mToDoManager = ToDoManager(mContext)
+
+        mToDo = arguments?.getSerializable(Constants.KEY_TODO) as? ToDo
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
@@ -60,14 +74,20 @@ class AddToDoFragment : Fragment() {
             })
 
             mButton.setOnClickListener {
-                addToDO()
+                mToDo?.let {
+                    mToDoManager.updateToDo(it.id, mUI.mContent.text.toString(), mImportanceValue, mUrgencyValue)
+                } ?: mToDoManager.addToDo(mUI.mContent.text.toString(), mImportanceValue, mUrgencyValue)
+
+                activity?.setResult(Activity.RESULT_OK)
+                activity?.finish()
+            }
+
+            mToDo?.let {
+                mImportance.progress = it.importance
+                mUrgency.progress = it.urgency
+                mContent.setText(it.content)
+                mButton.setText(R.string.edit_todo_button)
             }
         }
-    }
-
-    private fun addToDO() {
-        mToDoManager.addToDo(mUI.mContent.text.toString(), mImportanceValue, mUrgencyValue)
-        activity?.setResult(Activity.RESULT_OK)
-        activity?.finish()
     }
 }
