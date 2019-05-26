@@ -1,5 +1,7 @@
 package com.hirauchi.todo_matrix.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.hirauchi.todo_matrix.R
 import com.hirauchi.todo_matrix.fragment.ToDoListFragment
@@ -7,9 +9,11 @@ import org.jetbrains.anko.startActivity
 import android.content.res.Configuration
 import android.view.*
 import com.hirauchi.todo_matrix.fragment.ToDoMatrixFragment
-
+import org.jetbrains.anko.startActivityForResult
 
 class ToDoActivity : BaseActivity() {
+
+    private val REQUEST_CODE_ADD_TODO = 100
 
     private val mToDoListFragment = ToDoListFragment()
     private val mToDoMatrixFragment = ToDoMatrixFragment()
@@ -52,8 +56,16 @@ class ToDoActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            R.id.menu_add_todo -> startActivityForResult<AddToDoActivity>(REQUEST_CODE_ADD_TODO)
             R.id.menu_app_info -> startActivity<AppInfoActivity>()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_ADD_TODO && resultCode == Activity.RESULT_OK) {
+            mToDoListFragment.loadTaskList()
+        }
     }
 }

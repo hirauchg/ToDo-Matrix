@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hirauchi.todo_matrix.R
-import com.hirauchi.todo_matrix.activity.ToDoActivity
 import com.hirauchi.todo_matrix.adapter.ToDoListAdapter
 import com.hirauchi.todo_matrix.manager.ToDoManager
 import com.hirauchi.todo_matrix.model.ToDo
@@ -52,17 +51,19 @@ class ToDoListFragment : Fragment(), ToDoListAdapter.ToDoListener {
         mAdapter.notifyDataSetChanged()
     }
 
-    override fun onDeleteToDo(id: Int) {
+    override fun onDeleteToDo(position: Int) {
+        val toDo = mToDoList.get(position)
+
         alert {
-            message = mContext.getString(R.string.todo_list_delete_message, mToDoList.get(id).content)
+            message = mContext.getString(R.string.todo_list_delete_message, toDo.content)
             yesButton {
-                mToDoManager.deleteToDo(id)
+                mToDoManager.deleteToDo(toDo.id)
                 loadTaskList()
             }
         }.show()
     }
 
-    override fun onEditToDo(id: Int) {
+    override fun onEditToDo(position: Int) {
 //        (activity as ToDoActivity).editTask(id)
     }
 }

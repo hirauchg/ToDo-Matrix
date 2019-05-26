@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AppInfoActivity"
+                  android:label="@string/app_info_title"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AddToDoActivity"
+                  android:label="@string/add_todo_title"
                   android:screenOrientation="portrait"/>
     </application>
 

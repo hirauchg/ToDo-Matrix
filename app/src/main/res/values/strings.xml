@@ -3,12 +3,20 @@
     <string name="app_name">ToDo-Matrix</string>
 
     <!-- AppInfo -->
+    <string name="app_info_title">アプリ情報</string>
     <string name="app_info_privacy">プライバシーポリシー</string>
     <string name="app_info_oss">オープンソースライセンス</string>
     <string name="app_info_version">アプリバージョン</string>
 
     <!-- ToDoList -->
+    <string name="todo_list_menu_add_todo">ToDoの追加</string>
+    <string name="todo_list_menu_app_info">アプリ情報</string>
     <string name="todo_list_importance">重要度：</string>
     <string name="todo_list_urgency">緊急度：</string>
     <string name="todo_list_delete_message">%1$sを削除してもよろしいですか？</string>
+
+    <!-- AddToDo -->
+    <string name="add_todo_title">ToDoの追加</string>
+
+    <string name="edit_todo_title">ToDoの編集</string>
 </resources>
