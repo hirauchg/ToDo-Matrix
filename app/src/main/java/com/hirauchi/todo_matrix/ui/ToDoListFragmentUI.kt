@@ -1,15 +1,21 @@
 package com.hirauchi.todo_matrix.ui
 
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.hirauchi.todo_matrix.fragment.ToDoListFragment
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.textView
-import org.jetbrains.anko.verticalLayout
+import org.jetbrains.anko.*
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class ToDoListFragmentUI : AnkoComponent<ToDoListFragment> {
+    lateinit var mRecyclerView: RecyclerView
+
     override fun createView(ui: AnkoContext<ToDoListFragment>) = with(ui) {
         verticalLayout {
-            textView("ToDoListFragment")
+            mRecyclerView = recyclerView {
+                layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
+            }.lparams(width = matchParent) {
+                topMargin = dip(8)
+            }
         }
     }
 }

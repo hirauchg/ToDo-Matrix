@@ -25,7 +25,7 @@ class ToDoManager(ctx: Context) {
         return toDo
     }
 
-    fun addToDo(content: String, importance: Long, urgency: Long) {
+    fun addToDo(content: String, importance: Int, urgency: Int) {
         mDB.use {
             insert(ToDoDBHelper.TABLE_TODO,
                 ToDoDBHelper.CULM_CONTENT to content,
@@ -34,7 +34,7 @@ class ToDoManager(ctx: Context) {
         }
     }
 
-    fun updateToDo(id: Int, content: String, importance: Long, urgency: Long) {
+    fun updateToDo(id: Int, content: String, importance: Int, urgency: Int) {
         mDB.use {
             update(ToDoDBHelper.TABLE_TODO,
                 ToDoDBHelper.CULM_CONTENT to content,
