@@ -20,15 +20,52 @@ class ToDoMatrixFragmentUI : AnkoComponent<ToDoMatrixFragment> {
             }.lparams(width = 0, height = matchParent, weight = 1F)
 
             verticalLayout {
-                backgroundColor = ContextCompat.getColor(ctx, R.color.gray)
-                mGridView = gridView {
-                    numColumns = 10
-                    horizontalSpacing = dip(1)
-                    verticalSpacing = dip(1)
-                }.lparams(width = matchParent, height = matchParent) {
-                    marginStart = dip(1)
+                linearLayout {
+                    relativeLayout {
+                        textView("高").lparams {
+                            centerHorizontally()
+                            topMargin = dip(10)
+                        }
+                        textView("重要度").lparams {
+                            centerInParent()
+                        }
+                        textView("低").lparams {
+                            centerHorizontally()
+                            alignParentBottom()
+                            bottomMargin = dip(10)
+                        }
+                    }.lparams(width = dip(60), height = matchParent)
+
+                    verticalLayout {
+                        backgroundColor = ContextCompat.getColor(ctx, R.color.gray)
+                        mGridView = gridView {
+                            numColumns = 10
+                            horizontalSpacing = dip(1)
+                            verticalSpacing = dip(1)
+                        }.lparams(width = matchParent, height = matchParent) {
+                            marginStart = dip(1)
+                        }
+                    }.lparams(width = 0, height = matchParent, weight = 1F)
+                }.lparams(width = matchParent, height = 0, weight = 1F)
+
+                relativeLayout {
+                    textView("低").lparams {
+                        leftMargin = dip(10)
+                    }
+                    textView("緊急度").lparams {
+                        centerHorizontally()
+                    }
+                    textView("高").lparams {
+                        alignParentEnd()
+                        rightMargin = dip(10)
+                    }
+                }.lparams(width = matchParent, height = wrapContent) {
+                    topMargin = dip(10)
+                    leftMargin = dip(60)
                 }
             }.lparams(width = 0, height = matchParent, weight = 2F)
+
+
         }
     }
 }

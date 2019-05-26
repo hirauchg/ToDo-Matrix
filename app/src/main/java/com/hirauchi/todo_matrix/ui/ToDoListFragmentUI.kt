@@ -15,7 +15,6 @@ class ToDoListFragmentUI : AnkoComponent<ToDoListFragment> {
                 layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
             }.lparams(width = matchParent, height = matchParent) {
                 topMargin = dip(8)
-                bottomMargin = dip(4)
             }
         }
     }

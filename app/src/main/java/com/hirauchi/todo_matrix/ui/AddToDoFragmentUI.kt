@@ -15,7 +15,7 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
 
     override fun createView(ui: AnkoContext<AddToDoFragment>) = with(ui) {
         scrollView {
-            setPadding(44, 44, 44, 44)
+            padding = dip(16)
 
             verticalLayout {
                 textView(R.string.add_todo_importance) {

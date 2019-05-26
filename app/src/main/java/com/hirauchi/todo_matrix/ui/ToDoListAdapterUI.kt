@@ -20,7 +20,7 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         cardView {
             cardElevation = dip(3).toFloat()
-            setContentPadding(18, 14, 0, 14)
+            setContentPadding(dip(8), dip(8), 0, dip(8))
 
             lparams(width = matchParent, height = wrapContent) {
                 horizontalMargin = dip(14)
@@ -49,7 +49,7 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
 
                     view {
                         setBackgroundColor(ContextCompat.getColor(ctx, android.R.color.darker_gray))
-                    }.lparams(width = matchParent, height = 2) {
+                    }.lparams(width = matchParent, height = dip(1)) {
                         verticalMargin = dip(3)
                     }
 
@@ -63,18 +63,18 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
                         imageView {
                             setImageResource(R.drawable.ic_delete)
                             scaleType = ImageView.ScaleType.FIT_CENTER
-                        }.lparams(width = 40, height = 40) {
+                        }.lparams(width = dip(40), height = dip(40)) {
                             centerInParent()
                         }
                     }.lparams(width = matchParent, height = 0, weight = 1F) {
-                        bottomMargin = dip(5)
+                        bottomMargin = dip(10)
                     }
 
                     mEdit = relativeLayout {
                         imageView {
                             setImageResource(R.drawable.ic_edit)
                             scaleType = ImageView.ScaleType.FIT_CENTER
-                        }.lparams(width = 40, height = 40) {
+                        }.lparams(width = dip(40), height = dip(40)) {
                             centerInParent()
                         }
                     }.lparams(width = matchParent, height = 0, weight = 1F)
