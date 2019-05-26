@@ -15,6 +15,7 @@ import com.hirauchi.todo_matrix.manager.ToDoManager
 import com.hirauchi.todo_matrix.model.ToDo
 import com.hirauchi.todo_matrix.ui.AddToDoFragmentUI
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.support.v4.toast
 
 class AddToDoFragment : Fragment() {
 
@@ -74,6 +75,11 @@ class AddToDoFragment : Fragment() {
             })
 
             mButton.setOnClickListener {
+                if (mUI.mContent.text.trim().isEmpty()) {
+                    toast("内容を入力してください")
+                    return@setOnClickListener
+                }
+
                 mToDo?.let {
                     mToDoManager.updateToDo(it.id, mUI.mContent.text.toString(), mImportanceValue, mUrgencyValue)
                 } ?: mToDoManager.addToDo(mUI.mContent.text.toString(), mImportanceValue, mUrgencyValue)
