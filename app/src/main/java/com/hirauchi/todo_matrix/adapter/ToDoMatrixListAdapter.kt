@@ -4,19 +4,19 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.ImageView
 import android.widget.TextView
 import com.hirauchi.todo_matrix.model.ToDo
-import com.hirauchi.todo_matrix.ui.ToDoListAdapterUI
+import com.hirauchi.todo_matrix.ui.ToDoMatrixListAdapterUI
 import org.jetbrains.anko.AnkoContext
 
-class ToDoListAdapter(val mContext: Context, val mListener: ToDoListener): RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
+class ToDoMatrixListAdapter(val mContext: Context, val mListener: ToDoMatrixListListener): RecyclerView.Adapter<ToDoMatrixListAdapter.ViewHolder>() {
 
-    private val mUI = ToDoListAdapterUI()
+    private val mUI = ToDoMatrixListAdapterUI()
 
-    interface ToDoListener {
-        fun onDeleteToDo(position: Int)
-        fun onEditToDo(position: Int)
+    interface ToDoMatrixListListener {
+        fun onDeleteClicked(position: Int)
+        fun onEditClicked(position: Int)
     }
 
     lateinit var mToDoList: List<ToDo>
@@ -37,23 +37,19 @@ class ToDoListAdapter(val mContext: Context, val mListener: ToDoListener): Recyc
         val item = mToDoList.get(position)
 
         holder.content.text = item.content
-        holder.importance.text = item.importance.toString()
-        holder.urgency.text = item.urgency.toString()
 
         holder.delete.setOnClickListener {
-            mListener.onDeleteToDo(position)
+            mListener.onDeleteClicked(position)
         }
 
         holder.edit.setOnClickListener {
-            mListener.onEditToDo(position)
+            mListener.onEditClicked(position)
         }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val content: TextView = mUI.mContent
-        val importance: TextView = mUI.mImportance
-        val urgency: TextView = mUI.mUrgency
-        val delete: RelativeLayout = mUI.mDelete
-        val edit: RelativeLayout = mUI.mEdit
+        val delete: ImageView = mUI.mDelete
+        val edit: ImageView = mUI.mEdit
     }
 }

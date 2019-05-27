@@ -5,6 +5,10 @@
     <color name="colorAccent">#D81B60</color>
     <color name="textColor">#000000</color>
 
+    <color name="category_0">#E9F5FF</color>
+    <color name="category_1">#FFFFDD</color>
+    <color name="category_2">#FFE5FC</color>
+
     <color name="black">#000000	</color>
     <color name="gray">#808080</color>
     <color name="silver">#C0C0C0</color>

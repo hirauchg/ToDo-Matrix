@@ -7,15 +7,16 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 class ToDoListFragmentUI : AnkoComponent<ToDoListFragment> {
+
     lateinit var mRecyclerView: RecyclerView
 
     override fun createView(ui: AnkoContext<ToDoListFragment>) = with(ui) {
         verticalLayout {
             mRecyclerView = recyclerView {
+                clipToPadding = false
+                bottomPadding = dip(8)
                 layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
-            }.lparams(width = matchParent, height = matchParent) {
-                topMargin = dip(8)
-            }
+            }.lparams(width = matchParent, height = wrapContent)
         }
     }
 }

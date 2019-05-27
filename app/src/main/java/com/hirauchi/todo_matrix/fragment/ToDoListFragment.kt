@@ -41,7 +41,7 @@ class ToDoListFragment : Fragment(), ToDoListAdapter.ToDoListener {
         super.onViewCreated(view, savedInstanceState)
 
         mToDoManager = ToDoManager(mContext)
-        mAdapter = ToDoListAdapter(this)
+        mAdapter = ToDoListAdapter(mContext, this)
         mUI.mRecyclerView.adapter = mAdapter
 
         loadTaskList()

@@ -19,51 +19,41 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         cardView {
-            cardElevation = dip(3).toFloat()
+            cardElevation = dip(2).toFloat()
             setContentPadding(dip(8), dip(8), 0, dip(8))
 
             lparams(width = matchParent, height = wrapContent) {
-                horizontalMargin = dip(14)
-                verticalMargin = dip(4)
+                horizontalMargin = dip(12)
+                topMargin = dip(8)
             }
 
             linearLayout {
                 verticalLayout {
                     linearLayout {
-                        textView(R.string.todo_list_importance) {
-                            textSize = 14F
-                        }.lparams(width = 0, weight = 1F)
+                        textView(R.string.todo_list_importance).lparams(width = 0, weight = 1F)
+                        mImportance = textView().lparams(width = 0, weight = 1F)
 
-                        mImportance = textView {
-                            textSize = 14F
-                        }.lparams(width = 0, weight = 1F)
-
-                        textView(R.string.todo_list_urgency) {
-                            textSize = 14F
-                        }.lparams(width = 0, weight = 1F)
-
-                        mUrgency = textView {
-                            textSize = 14F
-                        }.lparams(width = 0, weight = 1F)
+                        textView(R.string.todo_list_urgency).lparams(width = 0, weight = 1F)
+                        mUrgency = textView().lparams(width = 0, weight = 1F)
                     }
 
                     view {
                         setBackgroundColor(ContextCompat.getColor(ctx, android.R.color.darker_gray))
                     }.lparams(width = matchParent, height = dip(1)) {
-                        verticalMargin = dip(3)
+                        verticalMargin = dip(4)
                     }
 
                     mContent = textView {
                         textSize = 16F
                     }
-                }.lparams(width = 0, height = wrapContent, weight = 8F)
+                }.lparams(width = 0, height = wrapContent, weight = 1F)
 
                 verticalLayout {
                     mDelete = relativeLayout {
                         imageView {
                             setImageResource(R.drawable.ic_delete)
                             scaleType = ImageView.ScaleType.FIT_CENTER
-                        }.lparams(width = dip(40), height = dip(40)) {
+                        }.lparams(width = dip(20), height = dip(20)) {
                             centerInParent()
                         }
                     }.lparams(width = matchParent, height = 0, weight = 1F) {
@@ -74,11 +64,11 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
                         imageView {
                             setImageResource(R.drawable.ic_edit)
                             scaleType = ImageView.ScaleType.FIT_CENTER
-                        }.lparams(width = dip(40), height = dip(40)) {
+                        }.lparams(width = dip(20), height = dip(20)) {
                             centerInParent()
                         }
                     }.lparams(width = matchParent, height = 0, weight = 1F)
-                }.lparams(width = 0, height = matchParent, weight = 1F)
+                }.lparams(width = dip(40), height = matchParent)
             }
         }
     }
