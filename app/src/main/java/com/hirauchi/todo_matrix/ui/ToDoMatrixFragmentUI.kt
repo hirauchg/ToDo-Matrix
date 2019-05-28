@@ -20,9 +20,9 @@ class ToDoMatrixFragmentUI : AnkoComponent<ToDoMatrixFragment> {
     override fun createView(ui: AnkoContext<ToDoMatrixFragment>) = with(ui) {
         linearLayout {
             verticalLayout {
-                topPadding = dip(5)
-
                 verticalLayout {
+                    topPadding = dip(5)
+
                     backgroundColor = ContextCompat.getColor(ctx, R.color.white)
                     elevation = dip(4).toFloat()
 

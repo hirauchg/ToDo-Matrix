@@ -11,14 +11,9 @@ import com.hirauchi.todo_matrix.ui.ToDoMatrixAdatperUI
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
 
-class ToDoMatrixAdapter(val mContext: Context?, val mListener: ToDoMatrixAdapter.OnClickListener, val mMatrixDataList: List<MatrixData>): BaseAdapter() {
-
-    interface OnClickListener {
-        fun onItemClicked(matrixData: MatrixData)
-    }
+class ToDoMatrixAdapter(val mContext: Context?, val mMatrixDataList: List<MatrixData>): BaseAdapter() {
 
     inner class ViewHolder {
-        lateinit var container: RelativeLayout
         lateinit var toDoCount: TextView
     }
 
@@ -32,7 +27,6 @@ class ToDoMatrixAdapter(val mContext: Context?, val mListener: ToDoMatrixAdapter
             val ui = ToDoMatrixAdatperUI()
             newConvertView = ui.createView(AnkoContext.create(it.context, it))
             viewHolder.apply {
-                container = ui.mContainer
                 toDoCount = ui.mToDoCount
             }
             newConvertView.layoutParams = AbsListView.LayoutParams((it.width / 8) - 9, (it.height / 8) - 9)
@@ -45,14 +39,10 @@ class ToDoMatrixAdapter(val mContext: Context?, val mListener: ToDoMatrixAdapter
         var category = 0
         if (matrixData.importance > 4 || matrixData.urgency > 4) category = 1
         if (matrixData.importance > 4 && matrixData.urgency > 4) category = 2
-        viewHolder.container.backgroundColor = when (category) {
+        newConvertView.backgroundColor = when (category) {
             2 -> ContextCompat.getColor(mContext!!, R.color.category_2)
             1 -> ContextCompat.getColor(mContext!!, R.color.category_1)
             else -> ContextCompat.getColor(mContext!!, R.color.category_0)
-        }
-
-        viewHolder.container.setOnClickListener {
-            mListener.onItemClicked(matrixData)
         }
 
         return newConvertView

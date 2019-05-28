@@ -1,14 +1,12 @@
 package com.hirauchi.todo_matrix.ui
 
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import android.widget.TextView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
 class ToDoMatrixAdatperUI : AnkoComponent<ViewGroup> {
 
-    lateinit var mContainer: RelativeLayout
     lateinit var mToDoCount: TextView
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
@@ -16,7 +14,7 @@ class ToDoMatrixAdatperUI : AnkoComponent<ViewGroup> {
             cardElevation = dip(2).toFloat()
             radius = 0F
 
-            mContainer = relativeLayout {
+            relativeLayout {
                 mToDoCount = textView().lparams {
                     centerInParent()
                 }

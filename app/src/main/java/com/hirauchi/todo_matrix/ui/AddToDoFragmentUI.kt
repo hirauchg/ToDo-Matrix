@@ -1,5 +1,6 @@
 package com.hirauchi.todo_matrix.ui
 
+import android.support.v4.content.ContextCompat
 import android.view.Gravity
 import android.widget.*
 import com.hirauchi.todo_matrix.R
@@ -25,15 +26,17 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                 }
 
                 linearLayout {
-                    for (i in 1..10) {
+                    for (i in 1..8) {
                         textView(i.toString()) {
                             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                         }.lparams(width = 0, weight = 1F)
                     }
+                }.lparams {
+                    horizontalMargin = dip(6)
                 }
 
                 mImportance = seekBar {
-                    max = 9
+                    max = 7
                 }.lparams(width = matchParent) {
                     bottomMargin = dip(30)
                 }
@@ -45,15 +48,17 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                 }
 
                 linearLayout {
-                    for (i in 1..10) {
+                    for (i in 1..8) {
                         textView(i.toString()) {
                             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                         }.lparams(width = 0, weight = 1F)
                     }
+                }.lparams {
+                    horizontalMargin = dip(6)
                 }
 
                 mUrgency = seekBar {
-                    max = 9
+                    max = 7
                 }.lparams(width = matchParent) {
                     bottomMargin = dip(30)
                 }
@@ -65,10 +70,15 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                 }
 
                 mContent = editText().lparams(width = matchParent) {
-                    bottomMargin = dip(30)
+                    bottomMargin = dip(32)
                 }
 
-                mButton = button(R.string.add_todo_button).lparams(width = wrapContent) {
+                mButton = button(R.string.add_todo_button) {
+                    elevation = dip(2).toFloat()
+                    textSize = 15F
+                    textColor = ContextCompat.getColor(ctx, R.color.white)
+                    background = ContextCompat.getDrawable(ctx, R.drawable.custom_button)
+                }.lparams(width = dip(72), height = dip(40)) {
                     gravity = Gravity.CENTER_HORIZONTAL
                     bottomMargin = dip(30)
                 }

@@ -14,7 +14,7 @@ class ToDoListFragmentUI : AnkoComponent<ToDoListFragment> {
         verticalLayout {
             mRecyclerView = recyclerView {
                 clipToPadding = false
-                bottomPadding = dip(8)
+                bottomPadding = dip(6)
                 layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
             }.lparams(width = matchParent, height = wrapContent)
         }

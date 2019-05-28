@@ -3,9 +3,11 @@ package com.hirauchi.todo_matrix.fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hirauchi.todo_matrix.R
 import com.hirauchi.todo_matrix.adapter.ToDoMatrixAdapter
 import com.hirauchi.todo_matrix.adapter.ToDoMatrixListAdapter
 import com.hirauchi.todo_matrix.manager.ToDoManager
@@ -13,8 +15,9 @@ import com.hirauchi.todo_matrix.model.MatrixData
 import com.hirauchi.todo_matrix.model.ToDo
 import com.hirauchi.todo_matrix.ui.ToDoMatrixFragmentUI
 import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.backgroundColor
 
-class ToDoMatrixFragment : Fragment(), ToDoMatrixAdapter.OnClickListener, ToDoMatrixListAdapter.ToDoMatrixListListener {
+class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListener {
 
     lateinit var mContext: Context
     lateinit var mToDoManager: ToDoManager
@@ -22,6 +25,9 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixAdapter.OnClickListener, ToDoMa
 
     private val mUI = ToDoMatrixFragmentUI()
     private var mToDoList = listOf<ToDo>()
+    private var mMatrixDataList = arrayListOf<MatrixData>()
+    private var mBeforeView: View? = null
+    private var mBeforeData: MatrixData? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return mUI.createView(AnkoContext.create(inflater.context, this, false))
@@ -49,7 +55,6 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixAdapter.OnClickListener, ToDoMa
     }
 
     private fun setUpMatrix() {
-        val mMatrixDataList = arrayListOf<MatrixData>()
 
         var importance = 8
         var urgency = 1
@@ -71,15 +76,30 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixAdapter.OnClickListener, ToDoMa
             urgency++
         }
 
-        mUI.mGridView.adapter = ToDoMatrixAdapter(context, this, mMatrixDataList)
-    }
+        mUI.mGridView.adapter = ToDoMatrixAdapter(context, mMatrixDataList)
+        mUI.mGridView.setOnItemClickListener { _, view, position, _ ->
+            val matrixData = mMatrixDataList.get(position)
 
-    override fun onItemClicked(matrixData: MatrixData) {
-        mAdapter.setToDoList(matrixData.toDoList)
-        mAdapter.notifyDataSetChanged()
+            mAdapter.setToDoList(matrixData.toDoList)
+            mAdapter.notifyDataSetChanged()
 
-        mUI.mImportance.text = matrixData.importance.toString()
-        mUI.mUrgency.text = matrixData.urgency.toString()
+            mBeforeData?.let {
+                var category = 0
+                if (it.importance > 4 || it.urgency > 4) category = 1
+                if (it.importance > 4 && it.urgency > 4) category = 2
+                mBeforeView?.backgroundColor = when (category) {
+                    2 -> ContextCompat.getColor(mContext, R.color.category_2)
+                    1 -> ContextCompat.getColor(mContext, R.color.category_1)
+                    else -> ContextCompat.getColor(mContext, R.color.category_0)
+                }
+            }
+            mBeforeData = matrixData
+            mBeforeView = view
+            view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccent))
+
+            mUI.mImportance.text = matrixData.importance.toString()
+            mUI.mUrgency.text = matrixData.urgency.toString()
+        }
     }
 
     override fun onDeleteClicked(position: Int) {

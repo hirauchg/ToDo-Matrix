@@ -23,8 +23,8 @@ class ToDoListAdapterUI : AnkoComponent<ViewGroup> {
             setContentPadding(dip(8), dip(8), 0, dip(8))
 
             lparams(width = matchParent, height = wrapContent) {
-                horizontalMargin = dip(12)
-                topMargin = dip(8)
+                horizontalMargin = dip(8)
+                topMargin = dip(6)
             }
 
             linearLayout {
