@@ -11,10 +11,16 @@ import com.hirauchi.todo_matrix.ui.ToDoMatrixAdatperUI
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.backgroundColor
 
-class ToDoMatrixAdapter(val mContext: Context?, val mMatrixDataList: List<MatrixData>): BaseAdapter() {
+class ToDoMatrixAdapter(val mContext: Context?): BaseAdapter() {
 
     inner class ViewHolder {
         lateinit var toDoCount: TextView
+    }
+
+    lateinit var mMatrixDataList: List<MatrixData>
+
+    fun setMatrixDataList(matrixDataList: List<MatrixData>) {
+        mMatrixDataList = matrixDataList
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

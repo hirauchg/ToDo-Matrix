@@ -89,8 +89,8 @@ class AddToDoFragment : Fragment() {
             }
 
             mToDo?.let {
-                mImportance.progress = it.importance
-                mUrgency.progress = it.urgency
+                mImportance.progress = it.importance - 1
+                mUrgency.progress = it.urgency - 1
                 mContent.setText(it.content)
                 mButton.setText(R.string.edit_todo_button)
             }

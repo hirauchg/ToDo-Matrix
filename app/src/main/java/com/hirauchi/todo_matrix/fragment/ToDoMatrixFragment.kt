@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hirauchi.todo_matrix.R
+import com.hirauchi.todo_matrix.activity.ToDoActivity
 import com.hirauchi.todo_matrix.adapter.ToDoMatrixAdapter
 import com.hirauchi.todo_matrix.adapter.ToDoMatrixListAdapter
 import com.hirauchi.todo_matrix.manager.ToDoManager
@@ -21,10 +22,10 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
 
     lateinit var mContext: Context
     lateinit var mToDoManager: ToDoManager
-    lateinit var mAdapter: ToDoMatrixListAdapter
+    lateinit var mListAdapter: ToDoMatrixListAdapter
+    lateinit var mMatrixAdapter: ToDoMatrixAdapter
 
     private val mUI = ToDoMatrixFragmentUI()
-    private var mToDoList = listOf<ToDo>()
     private var mMatrixDataList = arrayListOf<MatrixData>()
     private var mBeforeView: View? = null
     private var mBeforeData: MatrixData? = null
@@ -42,25 +43,20 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
         super.onViewCreated(view, savedInstanceState)
 
         mToDoManager = ToDoManager(mContext)
-        mToDoList = mToDoManager.getToDoList()
 
+        setData()
         setUpList()
         setUpMatrix()
     }
 
-    private fun setUpList() {
-        mAdapter = ToDoMatrixListAdapter(mContext, this)
-        mAdapter.setToDoList(arrayListOf())
-        mUI.mRecyclerView.adapter = mAdapter
-    }
-
-    private fun setUpMatrix() {
+    fun setData() {
+        val toDoList = mToDoManager.getToDoList()
 
         var importance = 8
         var urgency = 1
         for (i in 1..64) {
             val list = arrayListOf<ToDo>()
-            for (todo in mToDoList) {
+            for (todo in toDoList) {
                 if (todo.importance.equals(importance) && todo.urgency.equals(urgency)) {
                     list.add(todo)
                 }
@@ -75,13 +71,37 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
             }
             urgency++
         }
+    }
 
-        mUI.mGridView.adapter = ToDoMatrixAdapter(context, mMatrixDataList)
+    fun reload() {
+        mMatrixDataList.clear()
+        setData()
+
+        mListAdapter.setToDoList(arrayListOf())
+        mListAdapter.notifyDataSetChanged()
+
+        mMatrixAdapter.setMatrixDataList(mMatrixDataList)
+        mMatrixAdapter.notifyDataSetChanged()
+
+        mUI.mImportance.text = ""
+        mUI.mUrgency.text = ""
+    }
+
+    private fun setUpList() {
+        mListAdapter = ToDoMatrixListAdapter(this)
+        mListAdapter.setToDoList(arrayListOf())
+        mUI.mRecyclerView.adapter = mListAdapter
+    }
+
+    private fun setUpMatrix() {
+        mMatrixAdapter = ToDoMatrixAdapter(mContext)
+        mMatrixAdapter.setMatrixDataList(mMatrixDataList)
+        mUI.mGridView.adapter = mMatrixAdapter
         mUI.mGridView.setOnItemClickListener { _, view, position, _ ->
             val matrixData = mMatrixDataList.get(position)
 
-            mAdapter.setToDoList(matrixData.toDoList)
-            mAdapter.notifyDataSetChanged()
+            mListAdapter.setToDoList(matrixData.toDoList)
+            mListAdapter.notifyDataSetChanged()
 
             mBeforeData?.let {
                 var category = 0
@@ -95,18 +115,18 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
             }
             mBeforeData = matrixData
             mBeforeView = view
-            view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.colorAccent))
+            view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.category_select))
 
             mUI.mImportance.text = matrixData.importance.toString()
             mUI.mUrgency.text = matrixData.urgency.toString()
         }
     }
 
-    override fun onDeleteClicked(position: Int) {
-
+    override fun onDeleteClicked(todo: ToDo) {
+        (activity as ToDoActivity).deleteTodo(todo)
     }
 
-    override fun onEditClicked(position: Int) {
-
+    override fun onEditClicked(todo: ToDo) {
+        (activity as ToDoActivity).editToDo(todo)
     }
 }

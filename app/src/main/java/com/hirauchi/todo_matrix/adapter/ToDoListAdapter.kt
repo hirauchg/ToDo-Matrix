@@ -1,6 +1,5 @@
 package com.hirauchi.todo_matrix.adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,13 @@ import com.hirauchi.todo_matrix.model.ToDo
 import com.hirauchi.todo_matrix.ui.ToDoListAdapterUI
 import org.jetbrains.anko.AnkoContext
 
-class ToDoListAdapter(val mContext: Context, val mListener: ToDoListener): RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
+class ToDoListAdapter(val mListener: ToDoListListener): RecyclerView.Adapter<ToDoListAdapter.ViewHolder>() {
 
     private val mUI = ToDoListAdapterUI()
 
-    interface ToDoListener {
-        fun onDeleteToDo(position: Int)
-        fun onEditToDo(position: Int)
+    interface ToDoListListener {
+        fun onDeleteClicked(todo: ToDo)
+        fun onEditClicked(todo: ToDo)
     }
 
     lateinit var mToDoList: List<ToDo>
@@ -41,11 +40,11 @@ class ToDoListAdapter(val mContext: Context, val mListener: ToDoListener): Recyc
         holder.urgency.text = item.urgency.toString()
 
         holder.delete.setOnClickListener {
-            mListener.onDeleteToDo(position)
+            mListener.onDeleteClicked(item)
         }
 
         holder.edit.setOnClickListener {
-            mListener.onEditToDo(position)
+            mListener.onEditClicked(item)
         }
     }
 

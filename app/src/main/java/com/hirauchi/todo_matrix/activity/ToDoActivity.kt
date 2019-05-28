@@ -10,9 +10,15 @@ import android.content.res.Configuration
 import android.view.*
 import com.hirauchi.todo_matrix.Constants
 import com.hirauchi.todo_matrix.fragment.ToDoMatrixFragment
+import com.hirauchi.todo_matrix.manager.ToDoManager
+import com.hirauchi.todo_matrix.model.ToDo
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.yesButton
 
 class ToDoActivity : BaseActivity() {
+
+    lateinit var mToDoManager: ToDoManager
 
     private val mToDoListFragment = ToDoListFragment()
     private val mToDoMatrixFragment = ToDoMatrixFragment()
@@ -21,6 +27,8 @@ class ToDoActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        mToDoManager = ToDoManager(this)
 
         supportFragmentManager.beginTransaction().apply {
             add(R.id.base_container, mToDoListFragment)
@@ -64,7 +72,26 @@ class ToDoActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            mToDoListFragment.loadTaskList()
+            reloadData()
         }
+    }
+
+    private fun reloadData() {
+        mToDoListFragment.loadTaskList()
+        mToDoMatrixFragment.reload()
+    }
+
+    fun editToDo(todo: ToDo) {
+        startActivityForResult<AddToDoActivity>(Constants.REQUEST_CODE_EDIT_TODO, Constants.KEY_TODO to todo)
+    }
+
+    fun deleteTodo(todo: ToDo) {
+        alert {
+            message = getString(R.string.todo_list_delete_message, todo.content)
+            yesButton {
+                mToDoManager.deleteToDo(todo.id)
+                reloadData()
+            }
+        }.show()
     }
 }

@@ -31,8 +31,6 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                         }.lparams(width = 0, weight = 1F)
                     }
-                }.lparams {
-                    horizontalMargin = dip(6)
                 }
 
                 mImportance = seekBar {
@@ -53,8 +51,6 @@ class AddToDoFragmentUI : AnkoComponent<AddToDoFragment> {
                             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                         }.lparams(width = 0, weight = 1F)
                     }
-                }.lparams {
-                    horizontalMargin = dip(6)
                 }
 
                 mUrgency = seekBar {
