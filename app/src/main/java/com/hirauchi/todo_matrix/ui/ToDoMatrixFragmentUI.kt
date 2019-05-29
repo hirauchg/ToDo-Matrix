@@ -3,6 +3,9 @@ package com.hirauchi.todo_matrix.ui
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
+import android.view.View
+import android.widget.Button
 import android.widget.GridView
 import android.widget.TextView
 import com.hirauchi.todo_matrix.R
@@ -15,6 +18,7 @@ class ToDoMatrixFragmentUI : AnkoComponent<ToDoMatrixFragment> {
     lateinit var mImportance: TextView
     lateinit var mUrgency: TextView
     lateinit var mRecyclerView: RecyclerView
+    lateinit var mAddButton: Button
     lateinit var mGridView: GridView
 
     override fun createView(ui: AnkoContext<ToDoMatrixFragment>) = with(ui) {
@@ -49,11 +53,24 @@ class ToDoMatrixFragmentUI : AnkoComponent<ToDoMatrixFragment> {
                     }
                 }
 
-                mRecyclerView = recyclerView {
-                    clipToPadding = false
-                    bottomPadding = dip(4)
-                    layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
-                }.lparams(width = matchParent, height = matchParent)
+                scrollView {
+                    verticalLayout {
+                        mRecyclerView = recyclerView {
+                            clipToPadding = false
+                            bottomPadding = dip(4)
+                            layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.VERTICAL, false)
+                        }.lparams(width = matchParent, height = wrapContent)
+
+                        mAddButton = button(R.string.todo_matrix_add) {
+                            elevation = dip(2).toFloat()
+                            visibility = View.GONE
+                        }.lparams(width = dip(80), height = dip(48)) {
+                            gravity = Gravity.CENTER_HORIZONTAL
+                            verticalMargin = dip(6)
+                        }
+                    }
+                }
+
             }.lparams(width = 0, height = matchParent, weight = 2F)
 
             view {

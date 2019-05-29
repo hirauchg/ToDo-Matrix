@@ -16,6 +16,7 @@
     <string name="todo_list_delete_message">%1$sを削除してもよろしいですか？</string>
 
     <!-- ToDoMatrix -->
+    <string name="todo_matrix_add">追加</string>
     <string name="todo_matrix_edit">編集</string>
     <string name="todo_matrix_delete">削除</string>
     <string name="todo_matrix_high">高</string>

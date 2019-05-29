@@ -63,7 +63,7 @@ class ToDoActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.menu_add_todo -> startActivityForResult<AddToDoActivity>(Constants.REQUEST_CODE_ADD_TODO)
+            R.id.menu_add_todo -> addToDo()
             R.id.menu_app_info -> startActivity<AppInfoActivity>()
         }
         return super.onOptionsItemSelected(item)
@@ -81,11 +81,15 @@ class ToDoActivity : BaseActivity() {
         mToDoMatrixFragment.reload()
     }
 
+    fun addToDo(importance: Int? = null, urgency: Int? = null) {
+        startActivityForResult<AddToDoActivity>(Constants.REQUEST_CODE_ADD_TODO, Constants.KEY_IMPORTANCE to importance, Constants.KEY_URGENCY to urgency)
+    }
+
     fun editToDo(todo: ToDo) {
         startActivityForResult<AddToDoActivity>(Constants.REQUEST_CODE_EDIT_TODO, Constants.KEY_TODO to todo)
     }
 
-    fun deleteTodo(todo: ToDo) {
+    fun deleteToDo(todo: ToDo) {
         alert {
             message = getString(R.string.todo_list_delete_message, todo.content)
             yesButton {

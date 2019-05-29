@@ -83,6 +83,7 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
         mMatrixAdapter.setMatrixDataList(mMatrixDataList)
         mMatrixAdapter.notifyDataSetChanged()
 
+        mUI.mAddButton.visibility = View.GONE
         mUI.mImportance.text = ""
         mUI.mUrgency.text = ""
     }
@@ -91,6 +92,10 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
         mListAdapter = ToDoMatrixListAdapter(this)
         mListAdapter.setToDoList(arrayListOf())
         mUI.mRecyclerView.adapter = mListAdapter
+
+        mUI.mAddButton.setOnClickListener {
+            (activity as ToDoActivity).addToDo(mBeforeData?.importance, mBeforeData?.urgency)
+        }
     }
 
     private fun setUpMatrix() {
@@ -119,11 +124,12 @@ class ToDoMatrixFragment : Fragment(), ToDoMatrixListAdapter.ToDoMatrixListListe
 
             mUI.mImportance.text = matrixData.importance.toString()
             mUI.mUrgency.text = matrixData.urgency.toString()
+            mUI.mAddButton.visibility = View.VISIBLE
         }
     }
 
     override fun onDeleteClicked(todo: ToDo) {
-        (activity as ToDoActivity).deleteTodo(todo)
+        (activity as ToDoActivity).deleteToDo(todo)
     }
 
     override fun onEditClicked(todo: ToDo) {

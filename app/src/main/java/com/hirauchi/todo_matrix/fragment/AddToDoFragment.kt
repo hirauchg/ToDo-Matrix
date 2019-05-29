@@ -28,9 +28,11 @@ class AddToDoFragment : Fragment() {
     private var mToDo: ToDo? = null
 
     companion object {
-        fun newInstance(todo: ToDo?): AddToDoFragment = AddToDoFragment().apply {
+        fun newInstance(todo: ToDo?, importance: Int, urgency: Int): AddToDoFragment = AddToDoFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(Constants.KEY_TODO, todo)
+                putInt(Constants.KEY_IMPORTANCE, importance)
+                putInt(Constants.KEY_URGENCY, urgency)
             }
         }
     }
@@ -49,7 +51,11 @@ class AddToDoFragment : Fragment() {
 
         mToDoManager = ToDoManager(mContext)
 
-        mToDo = arguments?.getSerializable(Constants.KEY_TODO) as? ToDo
+        arguments?.apply {
+            mToDo = getSerializable(Constants.KEY_TODO) as? ToDo
+            mImportanceValue = getInt(Constants.KEY_IMPORTANCE)
+            mUrgencyValue = getInt(Constants.KEY_URGENCY)
+        }
 
         activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
@@ -58,6 +64,7 @@ class AddToDoFragment : Fragment() {
 
     private fun setUpView() {
         mUI.apply {
+            mImportance.progress = mImportanceValue - 1
             mImportance.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     mImportanceValue = progress + 1
@@ -66,6 +73,7 @@ class AddToDoFragment : Fragment() {
                 override fun onStopTrackingTouch(seekBar: SeekBar) {}
             })
 
+            mUrgency.progress = mUrgencyValue - 1
             mUrgency.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     mUrgencyValue = progress + 1

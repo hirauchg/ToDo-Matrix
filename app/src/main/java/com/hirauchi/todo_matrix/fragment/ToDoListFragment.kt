@@ -50,7 +50,7 @@ class ToDoListFragment : Fragment(), ToDoListAdapter.ToDoListListener {
     }
 
     override fun onDeleteClicked(todo: ToDo) {
-        (activity as ToDoActivity).deleteTodo(todo)
+        (activity as ToDoActivity).deleteToDo(todo)
     }
 
     override fun onEditClicked(todo: ToDo) {
