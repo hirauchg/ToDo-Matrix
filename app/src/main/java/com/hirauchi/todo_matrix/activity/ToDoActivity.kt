@@ -63,7 +63,6 @@ class ToDoActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.menu_add_todo -> addToDo()
             R.id.menu_app_info -> startActivity<AppInfoActivity>()
         }
         return super.onOptionsItemSelected(item)

@@ -64,9 +64,12 @@ class ToDoMatrixFragmentUI : AnkoComponent<ToDoMatrixFragment> {
                         mAddButton = button(R.string.todo_matrix_add) {
                             elevation = dip(2).toFloat()
                             visibility = View.GONE
-                        }.lparams(width = dip(80), height = dip(48)) {
+                            textSize = 15F
+                            textColor = ContextCompat.getColor(ctx, R.color.white)
+                            background = ContextCompat.getDrawable(ctx, R.drawable.custom_button)
+                        }.lparams(width = dip(72), height = dip(40)) {
                             gravity = Gravity.CENTER_HORIZONTAL
-                            verticalMargin = dip(6)
+                            verticalMargin = dip(8)
                         }
                     }
                 }

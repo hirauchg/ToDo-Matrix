@@ -38,6 +38,9 @@ class ToDoListFragment : Fragment(), ToDoListAdapter.ToDoListListener {
         mToDoManager = ToDoManager(mContext)
         mAdapter = ToDoListAdapter(this)
         mUI.mRecyclerView.adapter = mAdapter
+        mUI.mFab.setOnClickListener {
+            (activity as ToDoActivity).addToDo()
+        }
 
         loadTaskList()
     }
