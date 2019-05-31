@@ -3,34 +3,34 @@
     <string name="app_name">ToDo-Matrix</string>
 
     <!-- AppInfo -->
-    <string name="app_info_title">アプリ情報</string>
-    <string name="app_info_privacy">プライバシーポリシー</string>
-    <string name="app_info_oss">オープンソースライセンス</string>
-    <string name="app_info_version">アプリバージョン</string>
+    <string name="app_info_title">App information</string>
+    <string name="app_info_privacy">Privacy policy</string>
+    <string name="app_info_oss">Open source license</string>
+    <string name="app_info_version">App version</string>
 
     <!-- ToDoList -->
-    <string name="todo_list_menu_add_todo">ToDoの追加</string>
-    <string name="todo_list_menu_app_info">アプリ情報</string>
-    <string name="todo_list_importance">重要度：</string>
-    <string name="todo_list_urgency">緊急度：</string>
-    <string name="todo_list_delete_message">%1$sを削除してもよろしいですか？</string>
+    <string name="todo_list_menu_add_todo">Add ToDo</string>
+    <string name="todo_list_menu_app_info">App information</string>
+    <string name="todo_list_importance">Importance：</string>
+    <string name="todo_list_urgency">Urgency：</string>
+    <string name="todo_list_delete_message">Are you sure you want to delete %1$s?</string>
 
     <!-- ToDoMatrix -->
-    <string name="todo_matrix_add">追加</string>
-    <string name="todo_matrix_edit">編集</string>
-    <string name="todo_matrix_delete">削除</string>
-    <string name="todo_matrix_high">高</string>
-    <string name="todo_matrix_low">低</string>
-    <string name="todo_matrix_importance">重要度</string>
-    <string name="todo_matrix_urgency">緊急度</string>
+    <string name="todo_matrix_add">Add</string>
+    <string name="todo_matrix_edit">Edit</string>
+    <string name="todo_matrix_delete">Delete</string>
+    <string name="todo_matrix_high">High</string>
+    <string name="todo_matrix_low">Low</string>
+    <string name="todo_matrix_importance">Importance</string>
+    <string name="todo_matrix_urgency">Urgency</string>
 
     <!-- AddToDo -->
-    <string name="add_todo_title">ToDoの追加</string>
-    <string name="add_todo_importance">重要度</string>
-    <string name="add_todo_urgency">緊急度</string>
-    <string name="add_todo_content">内容</string>
-    <string name="add_todo_button">追加</string>
+    <string name="add_todo_title">Add ToDo</string>
+    <string name="add_todo_importance">Importance</string>
+    <string name="add_todo_urgency">Urgency</string>
+    <string name="add_todo_content">Content</string>
+    <string name="add_todo_button">Add</string>
 
-    <string name="edit_todo_title">ToDoの編集</string>
-    <string name="edit_todo_button">編集</string>
+    <string name="edit_todo_title">Edit ToDo</string>
+    <string name="edit_todo_button">Edit</string>
 </resources>

@@ -1,0 +1,36 @@
+<resources>
+    <!-- Common -->
+    <string name="app_name">ToDo-Matrix</string>
+
+    <!-- AppInfo -->
+    <string name="app_info_title">Información de la aplicación</string>
+    <string name="app_info_privacy">Política de privacidad</string>
+    <string name="app_info_oss">Licencia de código abierto</string>
+    <string name="app_info_version">Version de aplicacion</string>
+
+    <!-- ToDoList -->
+    <string name="todo_list_menu_add_todo">Añadir ToDo</string>
+    <string name="todo_list_menu_app_info">Información de la aplicación</string>
+    <string name="todo_list_importance">Importancia：</string>
+    <string name="todo_list_urgency">Urgencia：</string>
+    <string name="todo_list_delete_message">¿Estás seguro de que deseas eliminar %1$s?</string>
+
+    <!-- ToDoMatrix -->
+    <string name="todo_matrix_add">Añadir</string>
+    <string name="todo_matrix_edit">Editar</string>
+    <string name="todo_matrix_delete">Borrar</string>
+    <string name="todo_matrix_high">Alto</string>
+    <string name="todo_matrix_low">Bajo</string>
+    <string name="todo_matrix_importance">Importancia</string>
+    <string name="todo_matrix_urgency">Urgencia</string>
+
+    <!-- AddToDo -->
+    <string name="add_todo_title">Añadir ToDo</string>
+    <string name="add_todo_importance">Importancia</string>
+    <string name="add_todo_urgency">Urgencia</string>
+    <string name="add_todo_content">Contenido</string>
+    <string name="add_todo_button">Añadir</string>
+
+    <string name="edit_todo_title">Editar ToDo</string>
+    <string name="edit_todo_button">Editar</string>
+</resources>

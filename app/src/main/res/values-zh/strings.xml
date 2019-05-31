@@ -1,0 +1,36 @@
+<resources>
+    <!-- Common -->
+    <string name="app_name">ToDo-Matrix</string>
+
+    <!-- AppInfo -->
+    <string name="app_info_title">应用信息</string>
+    <string name="app_info_privacy">隐私政策</string>
+    <string name="app_info_oss">开源许可证</string>
+    <string name="app_info_version">应用版本</string>
+
+    <!-- ToDoList -->
+    <string name="todo_list_menu_add_todo">添加任务</string>
+    <string name="todo_list_menu_app_info">应用信息</string>
+    <string name="todo_list_importance">严重：</string>
+    <string name="todo_list_urgency">急：</string>
+    <string name="todo_list_delete_message">您确定要删除%1$s吗？</string>
+
+    <!-- ToDoMatrix -->
+    <string name="todo_matrix_add">添加</string>
+    <string name="todo_matrix_edit">编辑</string>
+    <string name="todo_matrix_delete">删除</string>
+    <string name="todo_matrix_high">高</string>
+    <string name="todo_matrix_low">低</string>
+    <string name="todo_matrix_importance">严重</string>
+    <string name="todo_matrix_urgency">急</string>
+
+    <!-- AddToDo -->
+    <string name="add_todo_title">添加任务</string>
+    <string name="add_todo_importance">严重</string>
+    <string name="add_todo_urgency">急</string>
+    <string name="add_todo_content">内容</string>
+    <string name="add_todo_button">添加</string>
+
+    <string name="edit_todo_title">编辑任务</string>
+    <string name="edit_todo_button">编辑</string>
+</resources>
